@@ -112,9 +112,14 @@ export function SubjectDetailClient({
                 <Accordion type="multiple" className="w-full">
                   {years.map((year) => {
                     const sortedPapers = papersByYear[year].toSorted((a, b) => {
-                      const aNum = Number.parseInt(a.paperNumber || "0");
-                      const bNum = Number.parseInt(b.paperNumber || "0");
-                      return aNum - bNum;
+                      // Sort by variant (e.g., "Paper 12" -> 12, "Paper 21" -> 21)
+                      const extractNumber = (variant: string) => {
+                        const match = variant.match(/\d+/);
+                        return match ? Number.parseInt(match[0]) : 0;
+                      };
+                      return (
+                        extractNumber(a.variant) - extractNumber(b.variant)
+                      );
                     });
 
                     return (
