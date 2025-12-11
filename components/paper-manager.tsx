@@ -84,7 +84,6 @@ export function PaperManager() {
       year: new Date().getFullYear(),
       session: "May/June",
       variant: "Paper 11",
-      paperNumber: "1",
       pdfUrl: "#",
     };
 
@@ -342,33 +341,8 @@ export function PaperManager() {
                                 />
                               </div>
 
-                              {/* Paper Number */}
-                              <div>
-                                <label
-                                  htmlFor={`paperNumber-${subject.id}-${index}`}
-                                  className="text-xs font-semibold text-foreground/70 mb-1.5 block uppercase tracking-wide"
-                                >
-                                  Paper Number
-                                </label>
-                                <input
-                                  id={`paperNumber-${subject.id}-${index}`}
-                                  type="text"
-                                  value={paper.paperNumber || ""}
-                                  onChange={(e) =>
-                                    updatePaper(
-                                      subject.id,
-                                      index,
-                                      "paperNumber",
-                                      e.target.value
-                                    )
-                                  }
-                                  placeholder="e.g., 2"
-                                  className="w-full px-3 py-2.5 bg-background border border-border/60 rounded-lg text-sm hover:border-primary/40 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
-                                />
-                              </div>
-
                               {/* PDF URL */}
-                              <div className="md:col-span-2">
+                              <div className="md:col-span-2 lg:col-span-1">
                                 <label
                                   htmlFor={`pdfUrl-${subject.id}-${index}`}
                                   className="text-xs font-semibold text-foreground/70 mb-1.5 block uppercase tracking-wide"

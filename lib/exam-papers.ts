@@ -3,7 +3,6 @@ export type ExamPaper = {
   year: number;
   session: string; // e.g., "May/June", "Oct/Nov"
   variant: string; // e.g., "Paper 42", "Paper 21", "Variant 1"
-  paperNumber?: string; // e.g., "4", "2", "6" (extracted from variant)
   pdfUrl: string;
 };
 
