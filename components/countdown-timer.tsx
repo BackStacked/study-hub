@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card } from "@/components/ui/card";
 
@@ -34,12 +34,15 @@ export function CountdownTimer() {
     return () => clearInterval(timer);
   }, []);
 
-  const timeUnits = [
-    { label: "Days", value: timeLeft.days },
-    { label: "Hours", value: timeLeft.hours },
-    { label: "Minutes", value: timeLeft.minutes },
-    { label: "Seconds", value: timeLeft.seconds },
-  ];
+  const timeUnits = useMemo(
+    () => [
+      { label: "Days", value: timeLeft.days },
+      { label: "Hours", value: timeLeft.hours },
+      { label: "Minutes", value: timeLeft.minutes },
+      { label: "Seconds", value: timeLeft.seconds },
+    ],
+    [timeLeft.days, timeLeft.hours, timeLeft.minutes, timeLeft.seconds]
+  );
 
   return (
     <div className="flex flex-col items-center gap-8">
@@ -50,7 +53,7 @@ export function CountdownTimer() {
         transition={{ duration: 0.7 }}
       >
         <motion.h1
-          className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent px-4"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.2 }}
@@ -58,7 +61,7 @@ export function CountdownTimer() {
           Exam Countdown
         </motion.h1>
         <motion.p
-          className="text-muted-foreground text-lg"
+          className="text-muted-foreground text-base sm:text-lg px-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, delay: 0.4 }}
@@ -82,7 +85,7 @@ export function CountdownTimer() {
             whileHover={{ scale: 1.05, y: -5 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Card className="p-6 text-center transition-shadow duration-300 hover:shadow-xl">
+            <Card className="p-4 sm:p-6 text-center transition-shadow duration-300 hover:shadow-xl">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={unit.value}
@@ -90,12 +93,12 @@ export function CountdownTimer() {
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: 20, opacity: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="text-4xl md:text-5xl font-bold bg-gradient-to-br from-primary to-primary/70 bg-clip-text text-transparent"
+                  className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-br from-primary to-primary/70 bg-clip-text text-transparent"
                 >
                   {String(unit.value).padStart(2, "0")}
                 </motion.div>
               </AnimatePresence>
-              <div className="text-sm text-muted-foreground mt-2 font-medium">
+              <div className="text-xs sm:text-sm text-muted-foreground mt-2 font-medium">
                 {unit.label}
               </div>
             </Card>
@@ -110,7 +113,7 @@ export function CountdownTimer() {
         transition={{ duration: 0.7, delay: 0.8 }}
       >
         <motion.p
-          className="text-2xl font-semibold"
+          className="text-xl sm:text-2xl font-semibold px-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, delay: 1 }}
@@ -118,7 +121,7 @@ export function CountdownTimer() {
           Stay focused. You&lsquo;ve got this! 💪
         </motion.p>
         <motion.p
-          className="text-muted-foreground max-w-md"
+          className="text-muted-foreground max-w-md px-4 text-sm sm:text-base"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, delay: 1.2 }}

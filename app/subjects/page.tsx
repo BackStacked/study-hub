@@ -16,7 +16,7 @@ export default function SubjectsPage() {
           transition={{ duration: 0.7 }}
         >
           <motion.h1
-            className="text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent px-4"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.2 }}
@@ -24,7 +24,7 @@ export default function SubjectsPage() {
             Choose Your Subject
           </motion.h1>
           <motion.p
-            className="text-muted-foreground text-lg"
+            className="text-muted-foreground text-base sm:text-lg px-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.4 }}
@@ -50,20 +50,20 @@ export default function SubjectsPage() {
             >
               <Link href={`/subjects/${subject.id}`} className="block h-full">
                 <Card
-                  className={`p-6 h-full transition-all duration-300 hover:shadow-xl bg-gradient-to-br ${subject.color} border-2 hover:border-primary/50 group`}
+                  className={`p-4 sm:p-6 h-full transition-all duration-300 hover:shadow-xl bg-gradient-to-br ${subject.color} border-2 hover:border-primary/50 group`}
                 >
-                  <div className="space-y-3">
+                  <div className="space-y-2 sm:space-y-3">
                     <motion.div
-                      className="text-5xl mb-2"
+                      className="text-4xl sm:text-5xl mb-2"
                       whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
                       transition={{ duration: 0.5 }}
                     >
                       {subject.icon}
                     </motion.div>
-                    <h2 className="text-2xl font-bold group-hover:text-primary transition-colors">
+                    <h2 className="text-xl sm:text-2xl font-bold group-hover:text-primary transition-colors">
                       {subject.name}
                     </h2>
-                    <p className="text-muted-foreground text-sm">
+                    <p className="text-muted-foreground text-xs sm:text-sm">
                       {subject.description}
                     </p>
                     <div className="pt-2 flex items-center text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
