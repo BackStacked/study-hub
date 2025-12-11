@@ -1,36 +1,118 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# StudyHub - Exam Preparation Platform
+
+A modern, immersive study website built with Next.js, TypeScript, and Tailwind CSS.
+
+## Features
+
+- **Home Page**: Countdown timer to exam date (January 29, 2026)
+- **Subjects Page**: Access 9 different subjects:
+  - ESL (English as a Second Language)
+  - Physics MCQ
+  - Physics Theory
+  - Physics ATP
+  - ICT I, II, III
+  - Maths Calculator
+  - Maths Non-Calculator
+- **Subject Detail Pages**: Year-wise organized past exam papers
+- **Boards Page**: Information about exam boards and resources
+- **Modern Design**: Simplistic, clean interface with smooth animations
+- **Responsive**: Works on all devices
 
 ## Getting Started
 
-First, run the development server:
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Adding Exam Papers
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To add actual exam papers to your subjects:
 
-## Learn More
+1. Open `lib/exam-papers.ts`
+2. For each subject, update the PDF URLs:
 
-To learn more about Next.js, take a look at the following resources:
+```typescript
+"esl": [
+  {
+    year: 2023,
+    session: "May/June",
+    variant: "Variant 1",
+    pdfUrl: "https://your-pdf-url.com/paper.pdf"
+  },
+  // Add more papers...
+],
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Finding Past Papers
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+You can find past papers from:
 
-## Deploy on Vercel
+- [Cambridge International Past Papers](https://www.cambridgeinternational.org/exam-administration/cambridge-exams-officers-guide/phase-1-preparation/past-papers/)
+- [GCE Guide](https://www.gceguide.com/)
+- [Save My Exams](https://www.savemyexams.com/)
+- [Physics & Maths Tutor](https://www.physicsandmathstutor.com/)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Customization
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Change Exam Date
+
+Edit `components/countdown-timer.tsx` and update the exam date:
+
+```typescript
+const examDate = new Date("2026-01-29T00:00:00");
+```
+
+### Add More Subjects
+
+Edit `lib/subjects.ts` and add new subjects to the array.
+
+### Modify Colors
+
+Update `app/globals.css` to change the color scheme.
+
+## Tech Stack
+
+- **Framework**: Next.js 16
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4
+- **UI Components**: shadcn/ui
+- **Fonts**: Inter, Geist Sans, Geist Mono
+
+## Project Structure
+
+```
+my-app/
+├── app/
+│   ├── page.tsx              # Home page with countdown
+│   ├── layout.tsx            # Root layout with navigation
+│   ├── globals.css           # Global styles
+│   ├── subjects/
+│   │   ├── page.tsx          # Subjects grid
+│   │   └── [subjectId]/
+│   │       └── page.tsx      # Individual subject page
+│   └── boards/
+│       └── page.tsx          # Exam boards page
+├── components/
+│   ├── navigation.tsx        # Top navigation bar
+│   ├── countdown-timer.tsx   # Countdown component
+│   └── ui/                   # shadcn/ui components
+├── lib/
+│   ├── subjects.ts           # Subjects data
+│   ├── exam-papers.ts        # Exam papers data
+│   └── utils.ts              # Utility functions
+└── public/                   # Static files
+```
+
+## License
+
+Built for personal study purposes.
